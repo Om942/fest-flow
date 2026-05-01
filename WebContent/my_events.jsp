@@ -127,7 +127,7 @@ tr:hover{
 
 <div class="container">
 
-<h2>?? My Registered Events</h2>
+<h2>My Registered Events</h2>
 
 <div class="table-box">
 
