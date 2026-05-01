@@ -68,10 +68,10 @@ if(request.getMethod().equalsIgnoreCase("POST")){
         ps.executeUpdate();
         con.close();
 
-        msg = "? Successfully Registered for " + eventTitle;
+        msg = "Successfully Registered for " + eventTitle;
 
     }catch(Exception e){
-        msg = "? Error: " + e.getMessage();
+        msg = " Error: " + e.getMessage();
     }
 }
 %>
