@@ -1,9 +1,9 @@
-﻿<%@ page import="java.sql.*, java.io.*, javax.servlet.*, javax.servlet.http.*" %>
+<%@ page import="java.sql.*, java.io.*, javax.servlet.*, javax.servlet.http.*" %>
 
 <%
 String message = "";
 
-// ðŸ”¹ GET ID (SAFE)
+// 🔹 GET ID (SAFE)
 String idStr = request.getParameter("id");
 int id = 0;
 
@@ -15,17 +15,17 @@ if(idStr != null){
     }
 }
 
-// ðŸ”¹ HANDLE FILE UPLOAD ONLY ON POST
+// 🔹 HANDLE FILE UPLOAD ONLY ON POST
 if(request.getMethod().equalsIgnoreCase("POST")){
     try{
 
-        // ðŸ”¹ GET ID AGAIN FROM POST
+        // 🔹 GET ID AGAIN FROM POST
         String postId = request.getParameter("id");
         if(postId != null){
             id = Integer.parseInt(postId);
         }
 
-        // ðŸ”¹ GET FILE PART SAFELY
+        // 🔹 GET FILE PART SAFELY
         Part filePart = request.getPart("flyer");
 
         if(filePart != null && filePart.getSize() > 0){
@@ -39,7 +39,7 @@ if(request.getMethod().equalsIgnoreCase("POST")){
                 }
             }
 
-            // ðŸ”¹ HANDLE EMPTY FILE NAME
+            // 🔹 HANDLE EMPTY FILE NAME
             if(fileName != null && !fileName.equals("")){
 
                 // UNIQUE FILE NAME
@@ -53,10 +53,10 @@ if(request.getMethod().equalsIgnoreCase("POST")){
                 // SAVE FILE
                 filePart.write(uploadPath + File.separator + fileName);
 
-                // ðŸ”¹ DATABASE UPDATE (UNCHANGED)
-                Class.forName("com.mysql.jdbc.Driver");
+                // 🔹 DATABASE UPDATE (UNCHANGED)
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/techfest","root","root"
+                    "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
                 );
 
                 PreparedStatement ps = con.prepareStatement(
@@ -69,18 +69,18 @@ if(request.getMethod().equalsIgnoreCase("POST")){
                 ps.executeUpdate();
                 con.close();
 
-                message = "âœ… Flyer Uploaded Successfully";
+                message = "✅ Flyer Uploaded Successfully";
 
             } else {
-                message = "âŒ Invalid file name";
+                message = "❌ Invalid file name";
             }
 
         } else {
-            message = "âŒ Please select a file";
+            message = "❌ Please select a file";
         }
 
     }catch(Exception e){
-        message = "âŒ Error: " + e.getMessage();
+        message = "❌ Error: " + e.getMessage();
     }
 }
 %>
@@ -117,7 +117,7 @@ button {
 
 <h2>Upload Event Flyer</h2>
 
-<!-- ðŸ”¹ FORM (FIXED WITH ID) -->
+<!-- 🔹 FORM (FIXED WITH ID) -->
 <form method="post" enctype="multipart/form-data">
     
     <input type="hidden" name="id" value="<%= id %>">

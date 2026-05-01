@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*" %>
 
 <%
 if(session.getAttribute("student_email") == null){
@@ -11,10 +11,10 @@ String eventTitle = "";
 
 /* GET EVENT TITLE */
 try{
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
 
     Connection con = DriverManager.getConnection(
-        "jdbc:mysql://localhost/techfest","root","root"
+        "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
     );
 
     PreparedStatement ps =
@@ -44,10 +44,10 @@ if(request.getMethod().equalsIgnoreCase("POST")){
         String branch  = request.getParameter("branch");
         String year    = request.getParameter("year");
 
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection con = DriverManager.getConnection(
-            "jdbc:mysql://localhost/techfest","root","root"
+            "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
         );
 
         PreparedStatement ps = con.prepareStatement(
@@ -68,10 +68,10 @@ if(request.getMethod().equalsIgnoreCase("POST")){
         ps.executeUpdate();
         con.close();
 
-        msg = "✅ Successfully Registered for " + eventTitle;
+        msg = "? Successfully Registered for " + eventTitle;
 
     }catch(Exception e){
-        msg = "❌ Error: " + e.getMessage();
+        msg = "? Error: " + e.getMessage();
     }
 }
 %>

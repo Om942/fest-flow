@@ -148,10 +148,10 @@ tr:hover{
 
 <%
 try{
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
 
     Connection con = DriverManager.getConnection(
-        "jdbc:mysql://localhost/techfest","root","root"
+        "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
     );
 
     Statement st = con.createStatement();

@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*" %>
 
 <%
 String message = "";
@@ -19,9 +19,9 @@ if(request.getParameter("updateBtn") != null){
         String contact = request.getParameter("contact");
         String video = request.getParameter("video");
 
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(
-            "jdbc:mysql://localhost/techfest","root","root"
+            "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
         );
 
         PreparedStatement ps = con.prepareStatement(
@@ -43,10 +43,10 @@ if(request.getParameter("updateBtn") != null){
         ps.executeUpdate();
         con.close();
 
-        message = "✅ Event Updated Successfully";
+        message = "? Event Updated Successfully";
 
     }catch(Exception e){
-        message = "❌ Error: " + e.getMessage();
+        message = "? Error: " + e.getMessage();
     }
 }
 %>
@@ -274,9 +274,9 @@ function closeModal(){
 
 <%
 try{
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con = DriverManager.getConnection(
-        "jdbc:mysql://localhost/techfest","root","root"
+        "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
     );
 
     Statement st = con.createStatement();

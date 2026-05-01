@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*" %>
 
 <%
 String email = (String) session.getAttribute("student_email");
@@ -127,7 +127,7 @@ tr:hover{
 
 <div class="container">
 
-<h2>🎯 My Registered Events</h2>
+<h2>?? My Registered Events</h2>
 
 <div class="table-box">
 
@@ -149,10 +149,10 @@ PreparedStatement ps = null;
 ResultSet rs = null;
 
 try{
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
 
     con = DriverManager.getConnection(
-        "jdbc:mysql://localhost/techfest","root","root"
+        "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
     );
 
     String query = "SELECT * FROM event_registrations WHERE student_email=? ORDER BY applied_date DESC";

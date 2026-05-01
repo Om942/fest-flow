@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*" %>
 
 <%
 String email = (String) session.getAttribute("student_email");
@@ -24,9 +24,9 @@ if(request.getParameter("updateBtn") != null){
         branch = request.getParameter("branch");
         year = request.getParameter("year");
 
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection(
-            "jdbc:mysql://localhost/techfest","root","root"
+            "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
         );
 
         String updateQuery =
@@ -44,16 +44,16 @@ if(request.getParameter("updateBtn") != null){
         int rows = ps.executeUpdate();
 
         if(rows > 0){
-            message = "✅ Profile Updated Successfully";
+            message = "? Profile Updated Successfully";
         }else{
-            message = "❌ Update Failed";
+            message = "? Update Failed";
         }
 
         ps.close();
         con.close();
 
     }catch(Exception e){
-        message = "❌ Error: " + e.getMessage();
+        message = "? Error: " + e.getMessage();
     }
 }
 
@@ -61,7 +61,7 @@ if(request.getParameter("updateBtn") != null){
 try{
     Class.forName("com.mysql.cj.jdbc.Driver");
     con = DriverManager.getConnection(
-        "jdbc:mysql://localhost:3306/techfest","root","root"
+        "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
     );
 
     String fetchQuery = "SELECT * FROM users WHERE email=?";
@@ -79,7 +79,7 @@ try{
     }
 
 }catch(Exception e){
-    message = "❌ Error loading profile";
+    message = "? Error loading profile";
 }
 finally{
     try{ if(rs!=null) rs.close(); }catch(Exception e){}
@@ -210,9 +210,9 @@ button:hover{
 
 <div class="container">
 
-<h2>👤 Update Profile</h2>
+<h2>?? Update Profile</h2>
 
-<p class="msg <%= message.contains("✅") ? "success" : "error" %>">
+<p class="msg <%= message.contains("?") ? "success" : "error" %>">
 <%= message %>
 </p>
 
@@ -246,7 +246,7 @@ button:hover{
 </form>
 
 <div class="back-btn">
-<a href="studentdashboard.jsp">⬅ Back to Dashboard</a>
+<a href="studentdashboard.jsp">? Back to Dashboard</a>
 </div>
 
 </div>

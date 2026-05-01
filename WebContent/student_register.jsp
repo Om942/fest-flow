@@ -12,11 +12,11 @@ if(request.getMethod().equalsIgnoreCase("POST")){
         String password = request.getParameter("password");
         String college = request.getParameter("college");
 
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(
-            "jdbc:mysql://localhost/techfest","root","root"
+            "jdbc:mysql://switchyard.proxy.rlwy.net:19169/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC","root","rCygbYnzyHvaFlmUiJBhXisaDtKyIihA"
         );
-
+        
         PreparedStatement ps = con.prepareStatement(
             "INSERT INTO students(name,contact,email,password,college) VALUES(?,?,?,?,?)"
         );
