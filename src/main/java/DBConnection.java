@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -5,7 +6,7 @@ public class DBConnection {
     public static Connection getConnection() {
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
 
             String host = System.getenv("MYSQLHOST") != null ? 
                 System.getenv("MYSQLHOST") : "switchyard.proxy.rlwy.net";
